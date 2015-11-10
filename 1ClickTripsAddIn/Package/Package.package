@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="24654fb2-ad3a-44bc-b0db-3db58c420e6a" solutionId="24654fb2-ad3a-44bc-b0db-3db58c420e6a" resetWebServer="false" sharePointProductVersion="15.0" name="1ClickTripsAddIn" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="e8297143-e0ff-43eb-9ae2-d9017fb85011" />
+  </projectItems>
+</package>
