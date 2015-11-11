@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="MailApp">
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="MailApp">
   <Id>6ce12762-7a36-4b9f-a91e-d3a3aa48a64f</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
+  <ProviderName>1ClickTrips</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="1ClickTripsAddIn"/>
   <Description DefaultValue="[Task pane Add-in description]"/>
-  <HighResolutionIconUrl DefaultValue="[Icon URL]"/>
-  <SupportUrl DefaultValue="http://google.com"/>
+  <SupportUrl DefaultValue="https://google.com"/>
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
@@ -27,4 +29,69 @@
   <Permissions>ReadWriteItem</Permissions>
   <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/>
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.3">
+        <bt:Set Name="Mailbox" />
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <!-- Appointment read form -->
+          <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="apptReadDemoGroup">
+                <Label resid="groupLabel" />
+                <Tooltip resid="groupTooltip" />
+                <!-- Task pane button -->
+                <Control xsi:type="Button" id="apptReadOpenPaneButton">
+                  <Label resid="paneReadButtonLabel" />
+                  <Tooltip resid="paneReadButtonTooltip" />
+                  <Supertip>
+                    <Title resid="paneReadSuperTipTitle" />
+                    <Description resid="paneReadSuperTipDescription" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="logo-16" />
+                    <bt:Image size="32" resid="logo-32" />
+                    <bt:Image size="80" resid="logo-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="readTaskPaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <!-- Green icon -->
+        <bt:Image id="logo-16" DefaultValue="https://localhost:8443/images/logo-16.png"/>
+        <bt:Image id="logo-32" DefaultValue="https://localhost:8443/images/logo-32.png"/>
+        <bt:Image id="logo-80" DefaultValue="https://localhost:8443/images/logo-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="readTaskPaneUrl" DefaultValue="https://localhost:8443/appread/home/home.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <!-- Read mode -->
+        <bt:String id="groupLabel" DefaultValue="Add-in Demo"/>
+        <bt:String id="paneReadButtonLabel" DefaultValue="Display all properties"/>
+        <bt:String id="paneReadSuperTipTitle" DefaultValue="Get all properties"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <!-- Read mode -->
+        <bt:String id="groupTooltip" DefaultValue="Add-in Demo of the different command types"/>
+        <bt:String id="paneReadButtonTooltip" DefaultValue="Opens a pane displaying all available properties of the message or appointment"/>
+        <bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties of the message or appointment. This is an example of a button that opens a task pane."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
 </OfficeApp>
